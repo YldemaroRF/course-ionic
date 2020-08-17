@@ -4,6 +4,8 @@ import { Dish } from '../../../shared/dish';
 import { DishService } from '../../services/dish.service';
 import { DishdetailPage } from '../dishdetail/dishdetail.page';
 import { NavigationExtras } from '@angular/router'
+import { FavoriteService } from '../../services/favorite.service';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -16,7 +18,8 @@ export class MenuPage implements OnInit {
 
   constructor(public navCtrl: NavController,public navParams: NavParams,
     private dishservice: DishService,
-    @Inject('BaseURL') public baseUrl: string) { }
+    @Inject('BaseURL') public baseUrl: string,
+    private favoriteservice: FavoriteService) { }
 
   ngOnInit() {
     this.dishservice.getDishes()
@@ -37,7 +40,11 @@ export class MenuPage implements OnInit {
   };
     this.navCtrl.navigateForward(['dishdetail'],navigationExtras);
   }
-
+  
+  addToFavorites(dish: Dish) {
+    console.log('Adding to Favorites', dish.id);
+    this.favoriteservice.addFavorite(Number(dish.id));
+  }
   
 
 }

@@ -9,7 +9,7 @@
 
 <ion-content [fullscreen]="true">
   <div *ngIf="dishes">
-    <ion-card *ngFor="let dish of dishes" (click)="dishSelected($event, dish)">
+    <ion-card *ngFor="let dish of dishes" (click)="dishSelected($event, dish)" (pan)="addToFavorites(dish)">
       <ion-card-header>
         <ion-img [src]="baseUrl + dish.image"></ion-img>
         <ion-card-title>{{dish.name}}</ion-card-title>
