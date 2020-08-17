@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Leader } from '../../../shared/leader';
+import { PromotionService } from '../../services/promotion.service';
+import { LeaderService } from '../../services/leader.service';
 
 @Component({
   selector: 'app-about',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutPage implements OnInit {
 
-  constructor() { }
+  leaders: Leader[];
+  leaderErrMess: string;
+  constructor(private leaderService:LeaderService,
+    @Inject('BaseURL') public baseUrl: string) { }
 
   ngOnInit() {
+    this.leaderService.getLeaders().subscribe(leaders => this.leaders = leaders,
+      leaderErrMess => this.leaderErrMess = <any>leaderErrMess);
   }
 
 }
