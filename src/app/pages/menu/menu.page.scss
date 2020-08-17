@@ -5,3 +5,23 @@ ion-list.md{
 ion-toolbar{
     background-color: #512DA8;
 }
+ion-card.md {
+    position: relative;
+    text-align: center;
+}
+
+ion-card-title.md {
+    position: absolute;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+}
+ion-card-subtitle.md {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #fff;
+}
