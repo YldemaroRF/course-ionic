@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar color="primary-pale">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-text color="primary" *ngIf="platform.is('ios')">Cancel</ion-text>
+        <ion-icon name="close" *ngIf="platform.is('android')"></ion-icon>
+        <ion-icon name="close" *ngIf="platform.is('desktop')"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Reserve Table</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content>
