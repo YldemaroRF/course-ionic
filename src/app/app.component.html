@@ -14,6 +14,12 @@
               </ion-thumbnail>
               <ion-text><h3>Ristorante Con Fusion</h3></ion-text>
           </ion-list-header>
+          <ion-menu-toggle color="primary-pale" >
+            <ion-item lines="none" detail="false" (click)="openLogin()">
+              <ion-icon slot="start" name="log-in"></ion-icon>
+              <ion-label>Login</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index"  >
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>

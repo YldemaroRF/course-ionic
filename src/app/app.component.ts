@@ -4,6 +4,7 @@ import { Platform, ModalController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ReservationPage } from './pages/reservation/reservation.page';
+import { LoginPage } from './pages/login/login.page';
 
 @Component({
   selector: 'app-root',
@@ -68,5 +69,13 @@ export class AppComponent implements OnInit {
 
     modal.present();
     
+  }
+
+  async openLogin() {
+    const modal = await this.modalCtrl.create({
+      component: LoginPage,
+      cssClass: 'my-custom-class'
+    });
+    modal.present();
   }
 }
