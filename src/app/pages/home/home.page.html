@@ -9,59 +9,68 @@
 
 <ion-content [fullscreen]="true">
   <ion-content>
-    <ion-card *ngIf="dish">
-      <ion-card-header>
-        <ion-img [src]="baseUrl + dish.image"></ion-img>
-        <ion-card-title>{{dish.name | uppercase}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        {{dish.description}}
-      </ion-card-content>
-    </ion-card>
-    <div [hidden]="dish || dishErrMess">
-      <ion-spinner></ion-spinner>
-      <h4>Loading . . . Please Wait</h4>
-    </div>
-    <div *ngIf="dishErrMess">
-      <h2>Error</h2>
-      <h4>{{dishErrMess}}</h4>
-    </div>
-  
-    <ion-card *ngIf="promotion">
-      <ion-card-header>
-        <ion-img [src]="baseUrl + promotion.image"></ion-img>
-        <ion-card-title>{{promotion.name | uppercase}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-          {{promotion.description}}
-      </ion-card-content>
-    </ion-card>
-    <div [hidden]="promotion || promoErrMess">
-      <ion-spinner></ion-spinner>
-      <h4>Loading . . . Please Wait</h4>
-    </div>
-    <div *ngIf="promoErrMess">
-      <h2>Error</h2>
-      <h4>{{promoErrMess}}</h4>
-    </div>
-  
-    <ion-card *ngIf="leader">
-      <ion-card-header>
-        <ion-img [src]="baseUrl + leader.image"></ion-img>
-        <ion-card-title>{{leader.name | uppercase}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-          {{leader.description}}
-      </ion-card-content>
-    </ion-card>
-    <div [hidden]="leader || leaderErrMess">
-      <ion-spinner></ion-spinner>
-      <h4>Loading . . . Please Wait</h4>
-    </div>
-    <div *ngIf="leaderErrMess">
-      <h2>Error</h2>
-      <h4>{{leaderErrMess}}</h4>
-    </div>
+    <ion-grid>
+      <ion-row aclass="ion-align-items-center">
+        <ion-col size="12" size-lg="4">
+          <ion-card *ngIf="dish">
+            
+            <ion-card-header>
+              <ion-img [src]="baseUrl + dish.image"></ion-img>
+              <ion-card-title>{{dish.name | uppercase}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              {{dish.description}}
+            </ion-card-content>
+          </ion-card>
+          <div [hidden]="dish || dishErrMess">
+            <ion-spinner></ion-spinner>
+            <h4>Loading . . . Please Wait</h4>
+          </div>
+          <div *ngIf="dishErrMess">
+            <h2>Error</h2>
+            <h4>{{dishErrMess}}</h4>
+          </div>
+        </ion-col>
+        <ion-col size="12" size-lg="4">
+          <ion-card *ngIf="promotion">
+            <ion-card-header>
+              <ion-img [src]="baseUrl + promotion.image"></ion-img>
+              <ion-card-title>{{promotion.name | uppercase}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                {{promotion.description}}
+            </ion-card-content>
+          </ion-card>
+          <div [hidden]="promotion || promoErrMess">
+            <ion-spinner></ion-spinner>
+            <h4>Loading . . . Please Wait</h4>
+          </div>
+          <div *ngIf="promoErrMess">
+            <h2>Error</h2>
+            <h4>{{promoErrMess}}</h4>
+          </div>
+        </ion-col>
+        <ion-col size="12" size-lg="4">
+          <ion-card *ngIf="leader">
+            <ion-card-header>
+              <ion-img [src]="baseUrl + leader.image"></ion-img>
+              <ion-card-title>{{leader.name | uppercase}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                {{leader.description}}
+            </ion-card-content>
+          </ion-card>
+          <div [hidden]="leader || leaderErrMess">
+            <ion-spinner></ion-spinner>
+            <h4>Loading . . . Please Wait</h4>
+          </div>
+          <div *ngIf="leaderErrMess">
+          <h2>Error</h2>
+          <h4>{{leaderErrMess}}</h4>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-content>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="warning">
