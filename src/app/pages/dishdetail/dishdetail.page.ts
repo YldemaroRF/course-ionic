@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { NavController, NavParams, ToastController } from '@ionic/angular';
+import { NavController, NavParams, ToastController,ActionSheetController, ModalController  } from '@ionic/angular';
 import { Dish } from '../../../shared/dish';
 import { Comment } from '../../../shared/comment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FavoriteService } from '../../services/favorite.service';
+import { CommentsPage } from '../comments/comments.page';
 
 @Component({
   selector: 'app-dishdetail',
@@ -17,14 +18,16 @@ export class DishdetailPage implements OnInit {
   avgstars: string;
   numcomments: number;
   favorite: boolean;
-
+  
   constructor(private route: ActivatedRoute, 
     private router: Router,
     public navCtrl: NavController, 
     public navParams: NavParams,
     @Inject('BaseURL') public baseUrl,
     private favoriteservice: FavoriteService,
-    private toastCtrl: ToastController) { 
+    private toastCtrl: ToastController,
+    public actionSheetController: ActionSheetController,
+    public modalCtrl: ModalController) { 
       this.route.queryParams.subscribe(params => {
         this.dish = JSON.parse(params.currency);
         this.numcomments = this.dish.comments.length;
@@ -33,6 +36,7 @@ export class DishdetailPage implements OnInit {
         this.avgstars = (total/this.numcomments).toFixed(2);
         this.favorite = favoriteservice.isFavorite(Number(this.dish.id));
       });
+      
     }
 
   ngOnInit() {
@@ -46,6 +50,44 @@ export class DishdetailPage implements OnInit {
       position: 'middle',
       duration: 3000});
     toast.present();
+  }
+
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Select Actions',
+      cssClass: 'my-custom-class',
+      buttons: [{
+        text: 'Add to Favorites',
+        handler: () => {
+          this.addToFavorites();
+        }
+      }, {
+        text: 'Add a Comment',
+        handler: () => {
+          this.openComment();
+        }
+      }, 
+      {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
+  }
+
+  async openComment() {
+    const modal = await this.modalCtrl.create({
+      component: CommentsPage,
+      cssClass: 'my-custom-class'
+    });
+
+    modal.present();
+    const { data } = await modal.onWillDismiss();
+    this.dish.comments.push(data);
   }
 
 }

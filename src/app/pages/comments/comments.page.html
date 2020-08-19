@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary-pale">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-text color="primary" *ngIf="platform.is('ios')">Cancel</ion-text>
+        <ion-icon name="close" *ngIf="platform.is('android')"></ion-icon>
+        <ion-icon name="close" *ngIf="platform.is('desktop')"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Add Comment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="commentForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Your Name</ion-label>
+      <ion-input formControlName="author" type="text" placeholder="Your Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-range formControlName="rating" min="1" max="5" step="1" snaps="true">
+        <ion-icon slot="start" name="sad-outline"></ion-icon>
+        <ion-icon slot="end" name="happy-outline"></ion-icon>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Your Comment</ion-label>
+      <ion-textarea formControlName="comment" placeholder="Your Comment"></ion-textarea>
+    </ion-item>
+    <ion-button type="submit" [disabled]="!commentForm.valid">Submit</ion-button>
+  </form>
+</ion-content>

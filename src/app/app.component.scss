@@ -1,8 +1,21 @@
-ion-list.md{
-  --ion-background-color: #D1C4E9;
-}
-
 ion-toolbar{
   background-color: #512DA8;
   color: white;
+}
+
+ion-list{
+  --ion-background-color: #D1C4E9
+}
+
+$lt-gray: #ddd;
+$background-dark: #512DA8;
+$background-light: #9575CD;
+$background-pale: #D1C4E9;
+
+.background-pale {
+  background-color: $background-pale
+}
+
+.background-light {
+  background-color: $background-light
 }

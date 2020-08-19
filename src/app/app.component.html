@@ -6,8 +6,14 @@
           <ion-title>Ristorante Con Fusion</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content >
-        <ion-list color="primary-pale">
+      <ion-content class="background-pale">
+        <ion-list>
+          <ion-list-header class="background-light">
+              <ion-thumbnail>
+                <img src="assets/images/logo.png" />
+              </ion-thumbnail>
+              <ion-text><h3>Ristorante Con Fusion</h3></ion-text>
+          </ion-list-header>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index"  >
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
