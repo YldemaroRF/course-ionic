@@ -3,6 +3,7 @@ import { NavController, NavParams, ModalController,Platform } from '@ionic/angul
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { User } from '../../../shared/user';
+import { RegisterPage } from '../register/register.page';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -56,6 +57,16 @@ export class LoginPage implements OnInit {
       this.storage.set('user', this.user)
     else
       this.storage.remove('user');
+    this.viewCtrl.dismiss();
+  }
+
+  async openRegister() {
+    let modal = await this.viewCtrl.create({
+      component: RegisterPage,
+      cssClass: 'my-custom-class'
+    });
+
+    modal.present();
     this.viewCtrl.dismiss();
   }
 

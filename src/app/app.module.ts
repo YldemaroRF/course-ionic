@@ -15,7 +15,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-
+import { Camera } from '@ionic-native/camera/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -35,6 +35,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     LocalNotifications,
     EmailComposer,
     SocialSharing,
+    Camera,
     {provide: 'BaseURL', useValue: baseURL},
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
