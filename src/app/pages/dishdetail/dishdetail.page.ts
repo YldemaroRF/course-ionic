@@ -5,6 +5,7 @@ import { Comment } from '../../../shared/comment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FavoriteService } from '../../services/favorite.service';
 import { CommentsPage } from '../comments/comments.page';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-dishdetail',
@@ -27,7 +28,8 @@ export class DishdetailPage implements OnInit {
     private favoriteservice: FavoriteService,
     private toastCtrl: ToastController,
     public actionSheetController: ActionSheetController,
-    public modalCtrl: ModalController) { 
+    public modalCtrl: ModalController,
+    private socialSharing: SocialSharing) { 
       this.route.queryParams.subscribe(params => {
         this.dish = JSON.parse(params.currency);
         this.numcomments = this.dish.comments.length;
@@ -67,6 +69,22 @@ export class DishdetailPage implements OnInit {
           this.openComment();
         }
       }, 
+      {
+        text: 'Share via Facebook',
+        handler: () => {
+          this.socialSharing.shareViaFacebook(this.dish.name + ' -- ' + this.dish.description, this.baseUrl + this.dish.image, '')
+            .then(() => console.log('Posted successfully to Facebook'))
+            .catch(() => console.log('Failed to post to Facebook'));
+        }
+      },
+      {
+        text: 'Share via Twitter',
+        handler: () => {
+          this.socialSharing.shareViaTwitter(this.dish.name + ' -- ' + this.dish.description, this.baseUrl + this.dish.image, '')
+            .then(() => console.log('Posted successfully to Twitter'))
+            .catch(() => console.log('Failed to post to Twitter'));
+        }
+      },
       {
         text: 'Cancel',
         icon: 'close',
