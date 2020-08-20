@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-contact',
@@ -8,7 +9,7 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 })
 export class ContactPage implements OnInit {
 
-  constructor(private emailComposer: EmailComposer) { }
+  constructor(private emailComposer: EmailComposer,private callNumber: CallNumber) { }
 
   ngOnInit() {
   }
@@ -24,6 +25,13 @@ export class ContactPage implements OnInit {
 
     // Send a text message using default options
     this.emailComposer.open(email);
+  }
+
+  callRestaurant(){
+    this.callNumber
+      .callNumber("+85212345678", true)
+      .then((res) => console.log("Launched dialer!", res))
+      .catch((err) => console.log("Error launching dialer", err));
   }
 
 }
